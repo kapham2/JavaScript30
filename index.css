@@ -1,0 +1,27 @@
+body {
+    max-width: 100vw;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
+div {
+    max-width: 25vw;
+    padding: 1vw;
+    margin: 1vw;
+    display: inline-block;
+    box-shadow: 0 0 0.5vw darkgrey;
+    border-radius: 0.25vw;
+    font-size: 2vw;
+}
+
+.img {
+    max-width: 100%;
+}
