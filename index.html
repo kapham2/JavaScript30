@@ -6,12 +6,37 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <div>    
-      <a href="./01%20-%20JavaScript%20Drum%20Kit/">
-        <img class="img" src="./01.png">
-        Day 1 - JavaScript Drum Kit
-      </a>
+    <div class="row">
+      <div class="column index">
+        <h3>Javascript30</h3>
+
+        <div class="card" data-url="./01%20-%20JavaScript%20Drum%20Kit/">    
+            <img class="img" data-url="./01%20-%20JavaScript%20Drum%20Kit/" src="./01.png">
+            <strong>Day 1 - JavaScript Drum Kit</strong><br>
+            Type one of the letters shown to see and hear the animation!
+        </div>
+      </div>
+
+      <div class="column show">
+        <iframe class="preview" src="./01%20-%20JavaScript%20Drum%20Kit/" height="100%" width="100%"></iframe>
+      </div>
     </div>
+
+    <script>
+  
+      function showPreview(e) {
+        const className = e.target.className
+        if (className === "card" || className === "img") {
+          const dataUrl = e.target.dataset.url
+          const preview = document.querySelector("iframe")
+          preview.src = dataUrl
+          preview.focus()
+        }
+      }
+      
+      window.addEventListener('click',  showPreview)
+        
+    </script>
 
   </body>
 </html>
