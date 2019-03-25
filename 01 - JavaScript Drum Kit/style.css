@@ -10,10 +10,20 @@ body,html {
   font-family: sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+.back {
+  display: flex;
+  flex: 1;
+  min-height: 20vh;
+}
+
 .keys {
   display: flex;
   flex: 1;
-  min-height: 100vh;
+  min-height: 80vh;
   align-items: center;
   justify-content: center;
 }
