@@ -15,15 +15,15 @@
     <input id="blur" type="range" name="blur" min="0" max="25" value="5" data-sizing="px">
 
     <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#8a2249">
+    <input id="base" type="color" name="base" value="#3b5148">
   </div>
 
-  <img src="https://source.unsplash.com/7bwQXzbF6KE/600x375">
+  <img src="https://images.unsplash.com/photo-1509029392939-806894b89ca4">
 
   <style>
 
     :root {
-      --base: #8a2249;
+      --base: #3b5148;
       --spacing: 20px;
       --blur: 5px;
     }
@@ -32,6 +32,8 @@
       padding: var(--spacing);
       background: var(--base);
       filter: blur(var(--blur));
+      max-width: calc(600px - 2 * var(--spacing));
+      max-height: calc(400px - 2 * var(--spacing));
     }
 
     .hl {
@@ -49,6 +51,11 @@
       font-family: 'helvetica neue', sans-serif;
       font-weight: 100;
       font-size: 25px;
+      background-image: url(https://images.unsplash.com/photo-1509029392939-806894b89ca4);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
     }
 
     .controls {
