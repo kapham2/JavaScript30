@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hold Shift to Check Multiple Checkboxes</title>
+</head>
+<body>
+  <style>
+
+    html {
+      font-family: sans-serif;
+      /* background: #ffc600; */
+      background-image: url(https://images.unsplash.com/photo-1530872607802-10c2f09144e6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    .inbox {
+      max-width: 400px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #F1F1F1;
+    }
+
+    .item:last-child {
+      border-bottom: 0;
+    }
+
+    input:checked + p {
+      background: #F9F9F9;
+      text-decoration: line-through;
+    }
+
+    input[type="checkbox"] {
+      margin: 20px;
+    }
+
+    p {
+      margin: 0;
+      padding: 20px;
+      transition: background 0.2s;
+      flex: 1;
+      font-family:'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+      border-left: 1px solid #D1E2FF;
+    }
+  </style>
+   <!--
+   The following is a common layout you would see in an email client.
+
+   When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
+
+  -->
+  <div class="inbox">
+    <div class="item">
+      <input id="1" type="checkbox">
+      <p>2 cups all-purpose flour</p>
+    </div>
+    <div class="item">
+      <input id="2" type="checkbox">
+      <p>1/2 teaspoon baking soda</p>
+    </div>
+    <div class="item">
+      <input id="3" type="checkbox">
+      <p>1/2 teaspoon salt</p>
+    </div>
+    <div class="item">
+      <input id="4" type="checkbox">
+      <p>3/4 cup unsalted butter, melted</p>
+    </div>
+    <div class="item">
+      <input id="5" type="checkbox">
+      <p>1 cup packed brown sugar</p>
+    </div>
+    <div class="item">
+      <input id="6" type="checkbox">
+      <p>1/2 cup white sugar</p>
+    </div>
+    <div class="item">
+      <input id="7" type="checkbox">
+      <p>1 tablespoon vanilla extract</p>
+    </div>
+    <div class="item">
+      <input id="8" type="checkbox">
+      <p>1 egg & 1 egg yolk</p>
+    </div>
+    <div class="item">
+      <input id="9" type="checkbox">
+      <p>2 cups semisweet chocolate chips</p>
+    </div>
+  </div>
+
+<script>
+  const checkboxes = document.querySelectorAll('input');
+  // console.log(checkboxes)
+
+  let lastChecked;
+
+  function setLastChecked(e) {
+    let inBetween;
+    console.log(lastChecked)
+
+    if (this.checked) {
+      if (e.shiftKey) {
+        inBetween = false
+  
+        checkboxes.forEach(checkbox => {
+          if (checkbox === lastChecked || checkbox === this) {
+            inBetween = !inBetween
+          }
+          
+          if (inBetween) {
+            checkbox.checked = true
+          }
+        })
+      }
+  
+      lastChecked = this
+    }
+    else {
+      if (e.shiftKey) {
+        inBetween = false
+  
+        checkboxes.forEach(checkbox => {
+          if (checkbox === this) {
+            inBetween = !inBetween
+          }
+
+          if(checkbox === lastChecked) {
+            checkbox.checked = false
+            inBetween = !inBetween
+          }
+          
+          if (inBetween) {
+            checkbox.checked = false
+          }
+        })
+      }
+
+      lastChecked = this
+    }
+    console.log(lastChecked)
+
+  }
+
+  checkboxes.forEach(checkbox => {
+    // console.log(checkbox)
+    checkbox.addEventListener('click', setLastChecked)
+  })
+
+</script>
+</body>
+</html>
