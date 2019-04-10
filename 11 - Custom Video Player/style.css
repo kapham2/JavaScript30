@@ -94,14 +94,14 @@ body {
   height: 5px;
   transition: height 0.3s;
   background: rgba(0,0,0,0.5);
-  cursor: ew-resize;
+  cursor: pointer;
 }
 
 .progress__filled {
   width: 50%;
-  background: #ffc600;
+  background: #921099;
   flex: 0;
-  flex-basis: 50%;
+  flex-basis: 0%;
 }
 
 /* unholy css to style input type="range" */
@@ -131,7 +131,7 @@ input[type=range]::-webkit-slider-thumb {
   height: 15px;
   width: 15px;
   border-radius: 50px;
-  background: #ffc600;
+  background: #921099;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -3.5px;
@@ -159,4 +159,16 @@ input[type=range]::-moz-range-thumb {
   border-radius: 50px;
   background: #ffc600;
   cursor: pointer;
+}
+
+.other__button {
+  background: none;
+  border: 0;
+  line-height: 1;
+  color: white;
+  font-weight: bold;
+  text-align: right;
+  outline: 0;
+  padding: 0;
+  max-width: 50px;
 }
