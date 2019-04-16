@@ -23,12 +23,94 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <p>
+      <button name="select-all">Select All</button><button name="delete-all" disabled>Delete All</button>
+    </p>
   </div>
 
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = [];
+  const items = JSON.parse(localStorage.getItem('items')) || [
+    // {
+    //   name: "salmon",
+    //   fished: true
+    // },
+    // {
+    //   name: "tilapia",
+    //   fished: false
+    // }
+  ];
+
+  function addItem(e) {
+    e.preventDefault()
+    const newItemName = e.target.querySelector('input').value;
+    const newItem = {
+      name: newItemName,
+      fished: false
+    }
+    items.push(newItem)
+    localStorage.setItem('items', JSON.stringify(items))
+    e.target.reset()
+    showItems()
+    buttonSelect.disabled = false
+  }
+  
+  function showItems() {
+    const listHTML = items.map((item, idx) => `<li><input type='checkbox' data-index="${idx}" id="item${idx}" ${item.fished ? "checked" : ""}><label for="item${idx}">${item.name}</label></li>`).join('')
+    itemsList.innerHTML = listHTML
+  }
+
+  function toggleChecked(e) {
+    if (e.target.matches('input')) {
+      const element = e.target
+      const index = element.dataset.index
+      // items.forEach((item, idx) => {
+      //   if (idx === parseInt(index)) {
+      //     item.fished = !item.fished
+      //   }
+      // })
+      items[index].fished = !items[index].fished
+      if (!items[index].fished) {
+        buttonDelete.disabled = true
+      }
+      localStorage.setItem('items', JSON.stringify(items))
+    }
+    else {
+      return
+    }
+  }
+
+  showItems()
+
+  addItems.addEventListener('submit', addItem)
+  itemsList.addEventListener('click', toggleChecked)
+
+  const buttonSelect = document.querySelector('[name=select-all]')
+  const buttonDelete = document.querySelector('[name=delete-all')
+
+  buttonSelect.disabled = items.length === 0
+
+  function checkAll() {
+    const fished = this.innerText === "Select All"
+    this.innerText = fished ? "Deselect All" : "Select All"
+    items.forEach(item => item.fished = fished)
+    localStorage.setItem('items', JSON.stringify(items))
+    showItems()
+    buttonDelete.disabled = !fished
+  }
+
+  function deleteAll() {
+    items.length = 0
+    localStorage.clear()
+    showItems()
+    buttonDelete.disabled = true
+    buttonSelect.innerText = "Select All"
+    buttonSelect.disabled = true
+  }
+
+  buttonSelect.addEventListener('click', checkAll)
+  buttonDelete.addEventListener('click', deleteAll)
 
 </script>
 

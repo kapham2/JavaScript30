@@ -65,7 +65,7 @@ h2 {
 }
 
 .plates input:checked + label:before {
-  content: '🌮';
+  content: '🐟';
 }
 
 .add-items {
@@ -73,6 +73,12 @@ h2 {
 }
 
 .add-items input {
+  padding: 10px;
+  outline: 0;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+button {
   padding: 10px;
   outline: 0;
   border: 1px solid rgba(0,0,0,0.1);
